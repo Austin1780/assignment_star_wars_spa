@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, {Component} from "react";
 
 class List extends Component {
   constructor(props) {
@@ -6,22 +6,28 @@ class List extends Component {
   }
 
   render() {
-    let results = this.props.results;
-    console.log("===============================");
-    console.log(this.props);
-    console.log("===============================");
+    console.log("props => ", this.props);
+    console.log(
+      "this.props[this.props.category] =>",
+      this.props[this.props.category]
+    );
+
+    let objArr = this.props[this.props.category];
+    //^^^the array of films/people/etc.
 
     return (
       <div>
-        {this.props.firstKeyName === "EMPTY" ? (
-          <div>Loading...</div>
-        ) : (
+        {objArr.length > 0 ? (
           <div>
             <h1>{this.props.category}</h1>
             <ul>
-              {results.map(item => {
-                return <li>{item[`${this.props.firstKeyName}`]}</li>;
-              })}
+              {Object.keys(objArr[0]).includes("title")
+                ? this.props[this.props.category].map(item => {
+                    return <li>{item["title"]}</li>;
+                  })
+                : this.props[this.props.category].map(item => {
+                    return <li>{item["name"]}</li>;
+                  })}
             </ul>
             {this.props.page === 1 ? null : (
               <input
@@ -38,6 +44,8 @@ class List extends Component {
               value={this.props.page + 1}
             />
           </div>
+        ) : (
+          <div>Loading...</div>
         )}
       </div>
     );

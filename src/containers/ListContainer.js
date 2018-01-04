@@ -1,78 +1,46 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
+import React, {Component} from "react";
+import {connect} from "react-redux";
+import {bindActionCreators} from "redux";
 
 //our component
 import List from "../components/List";
 
 //actions to be used
-import { starWarsAction } from "../actions";
+import {starWarsAction} from "../actions";
 
 //creating our own container
 class ListContainer extends Component {
   constructor(props) {
     super();
 
-    let path = props.match.path.split("/")[1];
-
-    // let { category } = this.props.category;
-    // let results = this.props[category];
-    // let firstKeyName = "EMPTY";
-    // if (!results) {
-    // } else if (results.length !== 0) {
-    //   let firstresultsObj = results[0];
-    //   firstKeyName = Object.keys(firstresultsObj)[0];
-    // }
-
-    let results;
-    if (this.props === undefined) {
-      results = undefined;
-    } else {
-      results = this.props[path];
-    }
-
     this.state = {
-      category: path,
-      page: 1,
-      results: results,
-      firstKeyName: "EMPTY"
+      page: 1
     };
 
     this.changePage = this.changePage.bind(this);
   }
 
-  componentUpdate(prevProps, prevState) {
-    if (prevState.results !== undefined && prevState.results === []) {
-      let { category } = this.state.category;
-      let results = this.props[category];
-      let firstKeyName = "EMPTY";
-      if (!results) {
-      } else if (results.length !== 0) {
-        let firstresultsObj = results[0];
-        firstKeyName = Object.keys(firstresultsObj)[0];
-      }
-      this.setState({
-        results: this.props[category],
-        firstKeyName: firstKeyName
-      });
-    }
-  }
-
   changePage(e) {
     e.preventDefault();
     let pageNum = this.target.value;
-    this.setState({ page: pageNum });
+    this.setState({page: pageNum});
     this.props.starWarsAction(this.state.page);
   }
 
   render() {
+    let path = this.props.match.path.split("/")[1];
+
     return (
       <List
-        results={this.state.results}
-        changePage={this.state.changePage}
-        category={this.state.category}
+        changePage={this.changePage}
+        category={path}
         page={this.state.page}
-        firstKeyName={this.state.firstKeyName}
+        films={this.props.films}
+        people={this.props.people}
+        planets={this.props.planets}
+        species={this.props.species}
+        starships={this.props.starships}
+        vehicles={this.props.vehicles}
       />
     );
   }
@@ -85,7 +53,8 @@ const mapStateToProps = state => {
     planets: state.planets,
     species: state.species,
     starships: state.starships,
-    vehicles: state.vehicles
+    vehicles: state.vehicles,
+    isFetching: state.isFetching
   };
 };
 

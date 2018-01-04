@@ -24,30 +24,42 @@ const NavLinks = () => (
       activeClassName="active"
       className="btn btn-primary"
       exact
-      to="/films"
+      to="/films/pages/1"
     >
       Films
     </NavLink>{" "}
-    <NavLink activeClassName="active" className="btn btn-primary" to="/people">
+    <NavLink
+      activeClassName="active"
+      className="btn btn-primary"
+      to="/people/pages/1"
+    >
       People
     </NavLink>{" "}
-    <NavLink activeClassName="active" className="btn btn-primary" to="/planets">
+    <NavLink
+      activeClassName="active"
+      className="btn btn-primary"
+      to="/planets/pages/1"
+    >
       Planets
     </NavLink>{" "}
-    <NavLink activeClassName="active" className="btn btn-primary" to="/species">
+    <NavLink
+      activeClassName="active"
+      className="btn btn-primary"
+      to="/species/pages/1"
+    >
       Species
     </NavLink>{" "}
     <NavLink
       activeClassName="active"
       className="btn btn-primary"
-      to="/starships"
+      to="/starships/pages/1"
     >
       Starships
     </NavLink>{" "}
     <NavLink
       activeClassName="active"
       className="btn btn-primary"
-      to="/vehicles"
+      to="/vehicles/pages/1"
     >
       Vehicles
     </NavLink>
@@ -74,12 +86,12 @@ const App = () => (
             </div>
           )}
         />
-        <Route exact path="/films" component={ListContainer} />
-        <Route exact path="/people" component={ListContainer} />
-        <Route exact path="/planets" component={ListContainer} />
-        <Route exact path="/species" component={ListContainer} />
-        <Route exact path="/starships" component={ListContainer} />
-        <Route exact path="/vehicles" component={ListContainer} />
+        <Route exact path="/films/pages/:page" component={ListContainer} />
+        <Route exact path="/people/pages/:page" component={ListContainer} />
+        <Route exact path="/planets/pages/:page" component={ListContainer} />
+        <Route exact path="/species/pages/:page" component={ListContainer} />
+        <Route exact path="/starships/pages/:page" component={ListContainer} />
+        <Route exact path="/vehicles/pages/:page" component={ListContainer} />
         <Route render={() => <img src={img404} />} />
       </Switch>
     </ScrollToTop>

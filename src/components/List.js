@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 
 class List extends Component {
   constructor(props) {
@@ -15,11 +15,17 @@ class List extends Component {
     let objArr = this.props[this.props.category];
     //^^^the array of films/people/etc.
 
+    let upperfirst = string => {
+      return string.charAt(0).toUpperCase() + string.slice(1);
+    };
+
+    let pageTitle = upperfirst(this.props.category);
+
     return (
       <div>
         {objArr.length > 0 ? (
           <div>
-            <h1>{this.props.category}</h1>
+            <h1>{pageTitle}</h1>
             <ul>
               {Object.keys(objArr[0]).includes("title")
                 ? this.props[this.props.category].map(item => {
@@ -37,6 +43,7 @@ class List extends Component {
                 value={this.props.page - 1}
               />
             )}
+
             <p>next page -></p>
             <input
               type="button"

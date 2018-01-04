@@ -1,12 +1,12 @@
-import React, {Component} from "react";
-import {connect} from "react-redux";
-import {bindActionCreators} from "redux";
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
 
 //our component
 import List from "../components/List";
 
 //actions to be used
-import {starWarsAction} from "../actions";
+import { starWarsAction } from "../actions";
 
 //creating our own container
 class ListContainer extends Component {
@@ -20,11 +20,16 @@ class ListContainer extends Component {
     this.changePage = this.changePage.bind(this);
   }
 
-  changePage(e) {
-    e.preventDefault();
-    let pageNum = e.target.value;
-    this.setState({page: pageNum});
-    this.props.starWarsAction(this.state.page);
+  async changePage(e) {
+    try {
+      e.preventDefault();
+      let pageNum = e.target.value;
+      pageNum = Number(pageNum);
+      await this.setState({ page: pageNum });
+      this.props.starWarsAction(this.state.page);
+    } catch (e) {
+      console.log(e);
+    }
   }
 
   render() {

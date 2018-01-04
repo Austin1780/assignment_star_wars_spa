@@ -27,8 +27,7 @@ export function getFailure(error) {
   };
 }
 
-export function starWarsAction(page = 1) {
-  //page = num
+export function starWarsAction(page) {
   return async dispatch => {
     try {
       dispatch(getRequest());

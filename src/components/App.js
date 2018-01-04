@@ -10,6 +10,9 @@ import {
 
 import ScrollToTop from "./ScrollToTop";
 
+//custom containers
+import ListContainer from "../containers/ListContainer";
+
 const NavLinks = () => (
   <div className="NavLinks">
     <NavLink activeClassName="active" exact to="/">
@@ -43,16 +46,14 @@ const App = () => (
 
       <Switch>
         <Route exact path="/" render={() => <h1>Home</h1>} />
-        {/* <Route path="/films" component={} />
-        <Route path="/people" component={} />
-        <Route path="/planets" component={} />
-        <Route path="/species" component={} />
-        <Route path="/starships" component={} />
-        <Route path="/vehicles" component={} /> */}
+        <Route path="/films" component={ListContainer} />
+        <Route path="/people" component={ListContainer} />
+        <Route path="/planets" component={ListContainer} />
+        <Route path="/species" component={ListContainer} />
+        <Route path="/starships" component={ListContainer} />
+        <Route path="/vehicles" component={ListContainer} />
         <Route render={() => <h1>Page not found</h1>} />
       </Switch>
-
-      <NavLinks />
     </ScrollToTop>
   </Router>
 );

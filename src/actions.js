@@ -27,24 +27,24 @@ export function getFailure(error) {
   };
 }
 
-export function starWarsAction() {
+export function starWarsAction(page = 1) {
+  //page = num
   return async dispatch => {
     try {
       dispatch(getRequest());
 
       let dataObj = {};
-      let resultsArray = [];
 
-      let dataArr = [
-        "people",
-        "films",
-        "planets",
-        "species",
-        "starships",
-        "vehicles"
-      ];
+      // let dataArr = [
+      //   "people",
+      //   "films",
+      //   "planets",
+      //   "species",
+      //   "starships",
+      //   "vehicles"
+      // ];
 
-      await fetch("https://swapi.co/api/people")
+      await fetch(`https://swapi.co/api/people/?page=${page}`)
         .then(response => {
           if (!response.ok) {
             throw new Error(`${response.status} ${response.statusText}`);
@@ -74,7 +74,7 @@ export function starWarsAction() {
           dispatch(getFailure(error));
         });
 
-      await fetch("https://swapi.co/api/planets")
+      await fetch(`https://swapi.co/api/planets/?page=${page}`)
         .then(response => {
           if (!response.ok) {
             throw new Error(`${response.status} ${response.statusText}`);
@@ -89,7 +89,7 @@ export function starWarsAction() {
           dispatch(getFailure(error));
         });
 
-      await fetch("https://swapi.co/api/species")
+      await fetch(`https://swapi.co/api/species/?page=${page}`)
         .then(response => {
           if (!response.ok) {
             throw new Error(`${response.status} ${response.statusText}`);
@@ -104,7 +104,7 @@ export function starWarsAction() {
           dispatch(getFailure(error));
         });
 
-      await fetch("https://swapi.co/api/starships")
+      await fetch(`https://swapi.co/api/starships/?page=${page}`)
         .then(response => {
           if (!response.ok) {
             throw new Error(`${response.status} ${response.statusText}`);
@@ -119,7 +119,7 @@ export function starWarsAction() {
           dispatch(getFailure(error));
         });
 
-      await fetch("https://swapi.co/api/vehicles")
+      await fetch(`https://swapi.co/api/vehicles/?page=${page}`)
         .then(response => {
           if (!response.ok) {
             throw new Error(`${response.status} ${response.statusText}`);

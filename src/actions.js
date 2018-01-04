@@ -27,43 +27,156 @@ export function getFailure(error) {
   };
 }
 
-export function starWarsAction(data) {
-  return async (dispatch) => {
+export function starWarsAction() {
+  return async dispatch => {
     try {
-
       dispatch(getRequest());
 
-      let dataObj = {}
+      let dataObj = {};
+      let resultsArray = [];
 
-      let dataArr = ['people', 'films', 'planets', 'species', 'starships', 'vehicles']
+      let dataArr = [
+        "people",
+        "films",
+        "planets",
+        "species",
+        "starships",
+        "vehicles"
+      ];
 
-      await dataArr.forEach( aysnc (data) => {
+      await fetch("https://swapi.co/api/people")
+        .then(response => {
+          if (!response.ok) {
+            throw new Error(`${response.status} ${response.statusText}`);
+          }
+          return response.json();
+        })
+        .then(json => {
+          dataObj["people"] = json.results;
+          return json.results;
+        })
+        .catch(error => {
+          dispatch(getFailure(error));
+        });
 
-        try {
-          await fetch(`https://swapi.co/api/${data}`)
-            .then(response => {
-              return response.json()
-            })
-            .then(json => {
-              dataObj[`${data}`] = json.results
-              return null
-            })
-            .catch(error => {
-              dispatch(getFailure(error))
-            });
-        }
+      await fetch("https://swapi.co/api/films")
+        .then(response => {
+          if (!response.ok) {
+            throw new Error(`${response.status} ${response.statusText}`);
+          }
+          return response.json();
+        })
+        .then(json => {
+          dataObj["films"] = json.results;
+          return json.results;
+        })
+        .catch(error => {
+          dispatch(getFailure(error));
+        });
 
-        catch(e){
-          console.log(e);
-        }
+      await fetch("https://swapi.co/api/planets")
+        .then(response => {
+          if (!response.ok) {
+            throw new Error(`${response.status} ${response.statusText}`);
+          }
+          return response.json();
+        })
+        .then(json => {
+          dataObj["planets"] = json.results;
+          return json.results;
+        })
+        .catch(error => {
+          dispatch(getFailure(error));
+        });
 
-      })
+      await fetch("https://swapi.co/api/species")
+        .then(response => {
+          if (!response.ok) {
+            throw new Error(`${response.status} ${response.statusText}`);
+          }
+          return response.json();
+        })
+        .then(json => {
+          dataObj["species"] = json.results;
+          return json.results;
+        })
+        .catch(error => {
+          dispatch(getFailure(error));
+        });
+
+      await fetch("https://swapi.co/api/starships")
+        .then(response => {
+          if (!response.ok) {
+            throw new Error(`${response.status} ${response.statusText}`);
+          }
+          return response.json();
+        })
+        .then(json => {
+          dataObj["starships"] = json.results;
+          return json.results;
+        })
+        .catch(error => {
+          dispatch(getFailure(error));
+        });
+
+      await fetch("https://swapi.co/api/vehicles")
+        .then(response => {
+          if (!response.ok) {
+            throw new Error(`${response.status} ${response.statusText}`);
+          }
+          return response.json();
+        })
+        .then(json => {
+          dataObj["vehicles"] = json.results;
+          return json.results;
+        })
+        .catch(error => {
+          dispatch(getFailure(error));
+        });
+
+      // for (let i = 0; i < dataArr.length; i++) {
+      //   let promise = new Promise((resolve, reject) => {
+      //     fetch(`https://swapi.co/api/${dataArr[i]}`)
+      //       .then(response => {
+      //         if (!response.ok) {
+      //           throw new Error(`${response.status} ${response.statusText}`);
+      //         }
+      //         return response.json();
+      //       })
+      //       .then(json => {
+      //         dataObj[`${dataArr[i]}`] = json.results;
+      //         resolve json.results;
+      //       })
+      //       .catch(error => {
+      //         dispatch(getFailure(error));
+      //       });
+      //   });
+      // }
+
+      // await dataArr.forEach( aysnc (data) => {
+      //
+      //   try {
+      //     await fetch(`https://swapi.co/api/${data}`)
+      //       .then(response => {
+      //         return response.json()
+      //       })
+      //       .then(json => {
+      //         dataObj[`${data}`] = json.results
+      //         return null
+      //       })
+      //       .catch(error => {
+      //         dispatch(getFailure(error))
+      //       });
+      //   }
+      //
+      //   catch(e){
+      //     console.log(e);
+      //   }
+      //
+      // })
 
       dispatch(getSuccess(dataObj));
-
-    }
-
-    catch(e){
+    } catch (e) {
       console.log(e);
     }
   };

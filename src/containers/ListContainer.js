@@ -22,7 +22,7 @@ class ListContainer extends Component {
 
   changePage(e) {
     e.preventDefault();
-    let pageNum = this.target.value;
+    let pageNum = e.target.value;
     this.setState({page: pageNum});
     this.props.starWarsAction(this.state.page);
   }

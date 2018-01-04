@@ -37,6 +37,7 @@ class List extends Component {
                 value={this.props.page - 1}
               />
             )}
+            <p>next page -></p>
             <input
               type="button"
               placeholder="next"

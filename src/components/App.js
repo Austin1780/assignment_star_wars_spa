@@ -74,12 +74,12 @@ const App = () => (
             </div>
           )}
         />
-        <Route path="/films" component={ListContainer} />
-        <Route path="/people" component={ListContainer} />
-        <Route path="/planets" component={ListContainer} />
-        <Route path="/species" component={ListContainer} />
-        <Route path="/starships" component={ListContainer} />
-        <Route path="/vehicles" component={ListContainer} />
+        <Route exact path="/films" component={ListContainer} />
+        <Route exact path="/people" component={ListContainer} />
+        <Route exact path="/planets" component={ListContainer} />
+        <Route exact path="/species" component={ListContainer} />
+        <Route exact path="/starships" component={ListContainer} />
+        <Route exact path="/vehicles" component={ListContainer} />
         <Route render={() => <img src={img404} />} />
       </Switch>
     </ScrollToTop>

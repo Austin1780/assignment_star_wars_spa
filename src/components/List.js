@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, {Component} from "react";
 
 class List extends Component {
   constructor(props) {
@@ -6,12 +6,6 @@ class List extends Component {
   }
 
   render() {
-    console.log("props => ", this.props);
-    console.log(
-      "this.props[this.props.category] =>",
-      this.props[this.props.category]
-    );
-
     let objArr = this.props[this.props.category];
     //^^^the array of films/people/etc.
 
@@ -22,7 +16,7 @@ class List extends Component {
     let pageTitle = upperfirst(this.props.category);
 
     return (
-      <div>
+      <div style={{marginLeft: "180px", marginTop: "30px"}}>
         {objArr.length > 0 ? (
           <div>
             <h1>{pageTitle}</h1>

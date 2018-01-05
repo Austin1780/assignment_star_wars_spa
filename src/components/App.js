@@ -82,6 +82,7 @@ const App = () => (
                 src="https://brorlandi.github.io/StarWarsIntroCreator/#!/AL21i2y_rQkWr4U735_M"
                 width="100%"
                 height="800px"
+                title="crawl"
               />
             </div>
           )}
@@ -92,7 +93,7 @@ const App = () => (
         <Route exact path="/species/pages/:page" component={ListContainer} />
         <Route exact path="/starships/pages/:page" component={ListContainer} />
         <Route exact path="/vehicles/pages/:page" component={ListContainer} />
-        <Route render={() => <img src={img404} />} />
+        <Route render={() => <img src={img404} alt="404 page not found" />} />
       </Switch>
     </ScrollToTop>
   </Router>

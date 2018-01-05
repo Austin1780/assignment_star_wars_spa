@@ -52,7 +52,7 @@ class List extends Component {
         {objArr.length > 0 ? (
           <div>
             <h1>{pageTitle}</h1>
-            <img src={imgSrc} />
+            <img src={imgSrc} alt="category" />
             <ul>
               {Object.keys(objArr[0]).includes("title")
                 ? this.props[this.props.category].map(item => {

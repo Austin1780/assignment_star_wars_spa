@@ -1,4 +1,11 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
+
+import peopleImg from "../people.jpg";
+import filmsImg from "../films.jpg";
+import aliensImg from "../aliens.jpg";
+import planetsImg from "../planets.png";
+import starshipsImg from "../starships.jpeg";
+import vehiclesImg from "../vehicles.jpg";
 
 class List extends Component {
   constructor(props) {
@@ -15,11 +22,37 @@ class List extends Component {
 
     let pageTitle = upperfirst(this.props.category);
 
+    let imgSrc = "";
+
+    switch (pageTitle) {
+      case "People":
+        imgSrc = peopleImg;
+        break;
+      case "Films":
+        imgSrc = filmsImg;
+        break;
+      case "Species":
+        imgSrc = aliensImg;
+        break;
+      case "Planets":
+        imgSrc = planetsImg;
+        break;
+      case "Starships":
+        imgSrc = starshipsImg;
+        break;
+      case "Vehicles":
+        imgSrc = vehiclesImg;
+        break;
+      default:
+        break;
+    }
+
     return (
-      <div style={{marginLeft: "180px", marginTop: "30px"}}>
+      <div style={{ marginLeft: "180px", marginTop: "30px" }}>
         {objArr.length > 0 ? (
           <div>
             <h1>{pageTitle}</h1>
+            <img src={imgSrc} />
             <ul>
               {Object.keys(objArr[0]).includes("title")
                 ? this.props[this.props.category].map(item => {
